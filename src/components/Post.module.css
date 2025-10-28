@@ -1,0 +1,12 @@
+.post{
+    font-size: 72px;
+    background-color: lightblue;
+    margin: 20px 0px;
+    padding: 20px 0px ;
+}
+@media (max-width: 520px) {
+    .post{
+        font-size: 18px;
+        background-color: lightgreen;
+    }
+}
