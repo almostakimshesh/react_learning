@@ -10,3 +10,27 @@
         background-color: lightgreen;
     }
 }
+.post-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.post-form{
+    display: grid;
+    width: 40%;
+    padding: 60px;
+    background-color: #ff000060;
+    border-radius: 25px;
+
+}
+.form-label{
+    font-weight: medium;
+    margin-bottom: 30px;
+}
+
+.inputOutline:focus {
+    outline: 2px solid #ff000060 !important;
+    border-color: #ff000060 !important;
+    box-shadow: none !important;
+}
