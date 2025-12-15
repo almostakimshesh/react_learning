@@ -1,15 +1,14 @@
-import './App.css'
+import React from "react";
 import PostList from './components/PostsList';
-import NewPost from './components/NewPost';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 function App() {
   return (
     <>
-      <NewPost />
-      <PostList/>
+      <PostList />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

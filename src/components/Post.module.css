@@ -1,36 +1,57 @@
-.post{
-    font-size: 72px;
-    background-color: lightblue;
-    margin: 20px 0px;
-    padding: 20px 0px ;
+/* =========================
+   Grid Layout for Posts List
+   ========================= */
+
+
+
+.mainSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
 }
+.button-modal{
+  margin: 20px;
+}
+.postsWrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 3 per row */
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .postsWrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
 @media (max-width: 520px) {
-    .post{
-        font-size: 18px;
-        background-color: lightgreen;
-    }
-}
-.post-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-.post-form{
-    display: grid;
-    width: 40%;
-    padding: 60px;
-    background-color: #ff000060;
-    border-radius: 25px;
-
-}
-.form-label{
-    font-weight: medium;
-    margin-bottom: 30px;
+  .postsWrapper {
+    grid-template-columns: 1fr;
+  }
 }
 
+/* =========================
+   Single Post Card
+   ========================= */
+.post {
+  width: 100%;
+  display: flex;
+}
+
+.card {
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: red; /* keeps bootstrap bg=danger */
+}
+/* Your custom class for inputs */
 .inputOutline:focus {
-    outline: 2px solid #ff000060 !important;
-    border-color: #ff000060 !important;
-    box-shadow: none !important;
+  border-color: #ccc !important; /* optional border */
+  outline: none !important; /* optional outline */
+  box-shadow: none !important; /* changes Bootstrap glow */
+  transition: border-color 0.2s, box-shadow 0.2s !important;
 }
