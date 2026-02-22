@@ -1,8 +1,10 @@
 import { use, useState } from "react";
+// import {Nav,Navbar,Container, Row, Col, Button, Card } from "react-bootstrap";
 import NewPost from "./NewPost";
 import React from "react";
 import Posts from "./Posts";
 import classes from "./Post.module.css";
+import { Container } from "react-bootstrap";
 function PostsList() {
 
   const [posts, setPosts] = useState([]);
@@ -14,16 +16,25 @@ function PostsList() {
   //     setMessage(event.target.value);
   // }
     return (
-      <main className={`${classes["mainSection"]}`}>
-          <ul>
-              {/* <NewPost OnMessageChange={MeassageHandler} OnNameChange={NameHandler}/> */}
-              <NewPost onAddPost={addPostHandler}/>
-          </ul>
-          <ul className={`${classes["postsWrapper"]}`}>
-              {/* <Posts author={name} body={message} /> */}
-              {posts.map((post) => (<Posts key={post.message} author={post.name} body={post.message} />))}
-          </ul>
-      </main>
+      <Container>
+        <main className={`${classes["mainSection"]}`}>
+            <ul>
+                <NewPost onAddPost={addPostHandler}/>
+            </ul>
+            <hr/>
+            {posts.length >0 &&(
+              <div className={`${classes["postsSection"]}`}>
+                <ul className={`${classes["postsWrapper"]}`} >
+                    {posts.map((post) => (<Posts key={post.message} author={post.name} body={post.message} />))}
+                </ul>
+              </div>
+            )}
+            {posts.length === 0 &&( 
+              <h2 style={{textAlign:"center"}}>No posts yet.</h2>
+            )}
+
+        </main>
+      </Container>
     );
 }
 export default PostsList;
