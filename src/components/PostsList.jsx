@@ -1,5 +1,4 @@
-import { use, useState } from "react";
-// import {Nav,Navbar,Container, Row, Col, Button, Card } from "react-bootstrap";
+import { useEffect, useState } from "react";
 import NewPost from "./NewPost";
 import React from "react";
 import Posts from "./Posts";
@@ -9,17 +8,31 @@ function PostsList() {
 
   const [posts, setPosts] = useState([]);
 
+  useEffect(() => {
+    async function fetchPosts() {
+      const response = await fetch('http://localhost:8080/posts');
+      const responseData = await response.json();
+      setPosts(responseData.posts);
+    }
+    fetchPosts();
+  }, []);
+
   function addPostHandler(postData){
+    fetch('http://localhost:8080/posts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(postData)
+    });
     setPosts(existingPosts => [postData, ...existingPosts]);
+
   }
-  //   function MeassageHandler(event){
-  //     setMessage(event.target.value);
-  // }
     return (
       <Container>
         <main className={`${classes["mainSection"]}`}>
             <ul>
-                <NewPost onAddPost={addPostHandler}/>
+                <NewPost onAddPost={addPostHandler} />
             </ul>
             <hr/>
             {posts.length >0 &&(
