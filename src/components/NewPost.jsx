@@ -3,33 +3,69 @@ import { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import classes from './Post.module.css';
 import Modal from 'react-bootstrap/Modal';
-
+import Swal from 'sweetalert2'
 
 function NewPost({ onAddPost }) {
-  // props.onAddPost(postData);
-  const [name, setName] = useState('');
-  const [message, setMessage] = useState('');
-
-  function NameHandler(event){
-      setName(event.target.value);
-  }
-    function MeassageHandler(event){
-      setMessage(event.target.value);
-  }
-
-  function submitHandler(event){
-    event.preventDefault();
-    const postData = {
-      name: name,
-      message: message,
-    }
-    onAddPost(postData);
-  }
-
+ const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  // Handle input changes
+  const NameHandler = (e) => setName(e.target.value);
+  const MessageHandler = (e) => setMessage(e.target.value);
+
+  function submitHandler(e) {
+    e.preventDefault();
+    const postData = {
+      name: name,
+      message: message,
+    };
+    handleClose();
+    onAddPost(postData);
+
+  }
+
+
+
+  // Submit to WordPress
+  // const submitHandler = async (e) => {
+  //   e.preventDefault();
+
+  //   const postData = {
+  //     name,
+  //     message,
+  //   };
+
+  //   try {
+  //     const response = await fetch(
+  //       "http://localhost/testing_wordpress/wp-json/react-app/v1/submit-data",
+  //       {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify(postData),
+  //       }
+  //     );
+
+  //     const data = await response.json();
+  //     if (data.success) {
+  //       Swal.fire({
+  //         title: "Data Saved Successfully!",
+  //         icon: "success"
+  //       });
+  //       setName("");
+  //       setMessage("");
+  //       handleClose();
+  //     } else {
+  //       alert("Error saving data.");
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //     alert("Network error.");
+  //   }
+  // };
 
     return (
       <>
@@ -56,7 +92,7 @@ function NewPost({ onAddPost }) {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formMessage">
-                    <Form.Control className={`${classes["inputOutline"]}`} as="textarea" rows={3} placeholder="Enter your message"  onChange={MeassageHandler}/><br></br>
+                    <Form.Control className={`${classes["inputOutline"]}`} as="textarea" rows={3} placeholder="Enter your message"  onChange={MessageHandler}/><br></br>
                 </Form.Group>
                 <Button variant="danger" type="submit">
                   Submit
